@@ -37,13 +37,14 @@ module.exports = function() {
   modtask.new = async queryObject => {
     const { workflow } = queryObject;
     const queryObjectBase64 = Buffer.from(JSON.stringify(queryObject)).toString('base64');
+    const pathToJXA = `${__dirname}/workflow/${workflow}/newsession.jxa.js`;
     await modtask.newChainAsync([
       ['//inline/service?compose', serviceCompose],
       ['//service/session?userInterface'],
       [`//service/process?spawn`, {
         id: workflow,
         command: 'osascript', 
-        args: ['-l', 'JavaScript', `workflow/${workflow}/newsession.jxa.js`, queryObjectBase64]
+        args: ['-l', 'JavaScript', pathToJXA, queryObjectBase64]
       }]
     ]);
     return { success: true, data: '' };
