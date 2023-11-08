@@ -35,7 +35,8 @@ module.exports = function() {
   };
 
   modtask.new = async queryObject => {
-    const { workflow } = queryObject;
+    let { workflow } = queryObject;
+    if (!workflow) workflow = 'default';
     const queryObjectBase64 = Buffer.from(JSON.stringify(queryObject)).toString('base64');
     const pathToJXA = `${__dirname}/workflow/${workflow}/newsession.jxa.js`;
     await modtask.newChainAsync([
