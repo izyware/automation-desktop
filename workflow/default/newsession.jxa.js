@@ -18,8 +18,8 @@ if (action) {
       browserAction({ action: 'close', url })
       sleep(1);
       browserAction({ action: 'open', url });
-      runBrowserAutomation({ urlGrepStr: url, javascript, sleepBetweenCommandsSeconds: 1, enableKeyboard: false, javascriptQueryObject: { taskId }});
-  }
+runBrowserAutomation({ urlGrepStr: url, javascript, sleepBetweenCommandsSeconds: 1, enableKeyboard: false, javascriptQueryObject: { taskId }});
+}
 };
 
 datastreamMonitor.log('Finish');
@@ -122,6 +122,9 @@ function izyNodePolyFill() {
       sendKeystroke: function(keystroke) {
         datastreamMonitor.log({ action: 'sendKeyStroke', keystroke });
         system.keystroke(keystroke);
+      },
+      showBrowserState: function(state) {
+        console.log('========================================== showBrowserState: ' + state);
       }
     };
   
@@ -132,7 +135,6 @@ function izyNodePolyFill() {
       if (!outcome.success) {
         break;
       }
-      sleep(sleepBetweenCommandsSeconds);
       if (typeof(outcome.data) != 'string') {
         datastreamMonitor.log('will exit since nonstring returned from javascript: ' + typeof(outcome.data));
         return;
@@ -161,6 +163,10 @@ function izyNodePolyFill() {
             }
           }
         }
+      }
+      if (browserSessionInProgress) {
+        console.log('========================================== sleep');
+        sleep(sleepBetweenCommandsSeconds);
       }
     }
   };

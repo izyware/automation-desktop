@@ -8,9 +8,11 @@ function __izyStart(queryObject) {
   if (button && button.innerText == 'Check Updates') {
     button.setAttribute('izy-taskId', taskId);
     button.click();
+    cmds.push('showBrowserState' + 'done');
     cmds.push('done');
   } else {
     console.log('page not fully loaded yet');
+    cmds.push('showBrowserState' + 'not loaded');
     cmds.push('continue');
   };
   return JSON.stringify(cmds);
