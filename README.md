@@ -1,8 +1,7 @@
 # Installation
-Clone the repository then:
+To install the tools for global access to `izy.auto` command, use:
 
-    npm install 
-    npm link
+    curl -o- https://raw.githubusercontent.com/izyware/automation-desktop/master/sh/install.sh | bash
 
 # Basic CLI
 
@@ -19,6 +18,12 @@ Clone the repository then:
 
 
 # ChangeLog
+
+## v7.3
+* 7300001: implement install script
+
+## v7.2
+* 7200001:implement showBrowserState and improve sleep command to happen after command execution
 
 ## V7.1
 * 7100005: add support for fs.readFileSync. Implement addcurrentcontext to default workflow.

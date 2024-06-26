@@ -58,7 +58,10 @@ function izyNodePolyFill() {
   var process = {
     argv: buildArgv()
   };
-  const queryObject= JSON.parse(app.doShellScript(`echo ${process.argv[4]} | base64 --decode`));
+  let queryObject = {};
+  try {
+    queryObject = JSON.parse(app.doShellScript(`echo ${process.argv[4]} | base64 --decode`));
+  } catch(e) {};
   const module = {
     __filename: process.argv[3]
   };
