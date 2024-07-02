@@ -3,7 +3,7 @@
 echo installing ...
 mkdir ~/izyware;
 cd ~/izyware;
-git clone git@github.com:izyware/automation-desktop.git;
+git clone https://github.com/izyware/automation-desktop.git;
 cd automation-desktop;
 npm install;
 npm link;
